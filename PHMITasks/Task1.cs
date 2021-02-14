@@ -168,7 +168,7 @@ namespace PHMITasks
 
         private void SaveResults()
         {
-            using (var writer = File.AppendText("results.txt"))
+            using (var writer = File.AppendText("../../results.txt"))
             {
                 foreach (var result in _results)
                 {
