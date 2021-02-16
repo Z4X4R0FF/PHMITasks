@@ -1,4 +1,6 @@
-﻿namespace PHMITasks
+﻿using System.Text;
+
+namespace PHMITasks
 {
     internal class Program
     {
