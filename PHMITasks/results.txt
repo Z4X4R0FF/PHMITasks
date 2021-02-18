@@ -1,4 +1,0 @@
-Arab Test With DarkYellow color result 100%.
-Arab Test With Blue color result 100%.
-Arab Test With DarkRed color result 100%.
-Char Test With Magenta color result 0%.
