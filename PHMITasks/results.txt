@@ -1,0 +1,40 @@
+-----------
+Arab Test With Blue color result 80%.
+Arab Test With Green color result 100%.
+Arab Test With Yellow color result 100%.
+-----------
+Char Test With Blue color result 100%.
+Char Test With Green color result 100%.
+Char Test With Yellow color result 100%.
+-----------
+Arab Test With Blue color result 60%.
+Arab Test With Green color result 60%.
+Arab Test With Yellow color result 20%.
+-----------
+Char Test With Blue color result 60%.
+Char Test With Green color result 100%.
+Char Test With Yellow color result 20%.
+-----------
+Arab Test With Blue color result 100%.
+Arab Test With Green color result 100%.
+Arab Test With Yellow color result 80%.
+-----------
+Char Test With Blue color result 100%.
+Char Test With Green color result 60%.
+Char Test With Yellow color result 80%.
+-----------
+Arab Test With Blue color result 100%.
+Arab Test With Green color result 80%.
+Arab Test With Yellow color result 100%.
+-----------
+Char Test With Blue color result 100%.
+Char Test With Green color result 100%.
+Char Test With Yellow color result 100%.
+-----------
+Arab Test With Blue color result 60%.
+Arab Test With Green color result 100%.
+Arab Test With Yellow color result 100%.
+-----------
+Char Test With Blue color result 80%.
+Char Test With Green color result 100%.
+Char Test With Yellow color result 60%.
