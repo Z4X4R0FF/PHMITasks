@@ -6,7 +6,7 @@ namespace PHMITasks
     {
         public static void Main(string[] args)
         {
-            var task = new Task1();
+            var task = new Task2();
         }
     }
 }
