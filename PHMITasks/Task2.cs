@@ -9,19 +9,24 @@ namespace PHMITasks
     {
         public Task2()
         {
-            PrintMessage(ConsoleColor.White, "Welcome to DirectoryWorker!",
-                "Press 1 for console interface, press 2 for Menu Interface");
-            var interfaceNumber = Console.ReadKey();
-            Console.Clear();
-            switch (interfaceNumber.Key)
+            while (true)
             {
-                case ConsoleKey.D1:
-                    LoadConsoleInterface();
-                    break;
-                case ConsoleKey.D2:
-                    LoadMenuInterface();
-                    break;
-                default: throw new ArgumentException("Wrong key pressed");
+                PrintMessage(ConsoleColor.White, "Welcome to DirectoryWorker!",
+                "Press 1 for console interface, press 2 for Menu Interface");
+                var interfaceNumber = Console.ReadKey();
+                Console.Clear();
+                switch (interfaceNumber.Key)
+                {
+                    case ConsoleKey.D1:
+                        LoadConsoleInterface();
+                        break;
+                    case ConsoleKey.D2:
+                        LoadMenuInterface();
+                        break;
+                    default:
+                        PrintMessage(ConsoleColor.Red, "Wrong key pressed");
+                        break;
+                }
             }
         }
 
@@ -33,7 +38,7 @@ namespace PHMITasks
         {
             "-help     Displays available commands",
             "-changeDir <new path>     Changes working directory",
-            "-changeExtension <filename1>|<filename2>|... <new extension>     Changes extension of specified files",
+            "-changeExt <filename1>|<filename2>|... <new extension>     Changes extension of specified files",
             "-dirInfo     Displays content of current folder",
             "-exit     Exit application"
         };
@@ -129,7 +134,7 @@ namespace PHMITasks
 
         private static void ProcessConsoleCommands(string command)
         {
-            var str = command.Split(new[] {' '}, 2);
+            var str = command.Split(new[] { ' ' }, 2);
             switch (str[0])
             {
                 case "-help":
@@ -152,16 +157,20 @@ namespace PHMITasks
 
                     break;
                 case "-changeExt":
-                    var extension = str[1].Substring(str[1].LastIndexOf(' '));
+                    var extension = str[1].Substring(str[1].LastIndexOf(' ') + 1);
                     var files = str[1].Substring(0, str[1].LastIndexOf(' ')).Split('|');
                     foreach (var file in files)
                     {
                         try
                         {
-                            File.Move(_currentDirAbsolutePath + '\\' + file,
-                                Path.ChangeExtension(_currentDirAbsolutePath + '\\' + file, '.' + extension));
-                            PrintMessage(ConsoleColor.Green,
-                                $"File {_currentDirAbsolutePath + '\\' + file} extension changed.");
+                            if (File.Exists(_currentDirAbsolutePath + '\\' + file))
+                            {
+                                File.Move(_currentDirAbsolutePath + '\\' + file,
+                                    Path.ChangeExtension(_currentDirAbsolutePath + '\\' + file, '.' + extension));
+                                PrintMessage(ConsoleColor.Green,
+                                    $"File {_currentDirAbsolutePath + '\\' + file} extension changed.");
+                            }
+                            else PrintMessage(ConsoleColor.Red, $"No such file {_currentDirAbsolutePath + '\\' + file}, skipping");
                         }
                         catch (Exception)
                         {
@@ -174,6 +183,7 @@ namespace PHMITasks
                     _currentDirFiles = Directory.GetFiles(_currentDirAbsolutePath);
                     break;
                 case "-dirInfo":
+                    _currentDirFiles = Directory.GetFiles(_currentDirAbsolutePath);
                     PrintMessage(ConsoleColor.Cyan, $"Directory {_currentDirAbsolutePath} content:");
                     foreach (var directory in _currentDirDirectories)
                     {
@@ -232,9 +242,13 @@ namespace PHMITasks
                     {
                         try
                         {
-                            File.Move(_currentDirFiles[file],
-                                Path.ChangeExtension(_currentDirFiles[file], '.' + extension));
-                            PrintMessage(ConsoleColor.Green, $"File {_currentDirFiles[file]} extension changed.");
+                            if (file >= _currentDirFiles.Length) PrintMessage(ConsoleColor.Red, $"{file} index is wrong, skipping");
+                            else
+                            {
+                                File.Move(_currentDirFiles[file],
+                                    Path.ChangeExtension(_currentDirFiles[file], '.' + extension));
+                                PrintMessage(ConsoleColor.Green, $"File {_currentDirFiles[file]} extension changed.");
+                            }
                         }
                         catch (Exception)
                         {
@@ -246,6 +260,7 @@ namespace PHMITasks
                     _currentDirFiles = Directory.GetFiles(_currentDirAbsolutePath);
                     break;
                 case ConsoleKey.D4:
+                    _currentDirFiles = Directory.GetFiles(_currentDirAbsolutePath);
                     PrintMessage(ConsoleColor.Cyan, $"Directory {_currentDirAbsolutePath} content:");
                     foreach (var directory in _currentDirDirectories)
                     {
